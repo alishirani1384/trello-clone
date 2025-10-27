@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div dir="rtl">
 
-## Getting Started
+# 🎯 کلون ترلو (Trello Clone)
 
-First, run the development server:
+## ✨ ویژگی‌ها
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### مدیریت برد (Board Management)
+- ✅ ویرایش عنوان برد با قابلیت ویرایش درون‌خطی
+- ✅ ذخیره‌سازی خودکار در localStorage
+- ✅ رابط کاربری زیبا و کاربرپسند
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### مدیریت لیست‌ها (List Management)
+- ✅ ایجاد لیست‌های جدید
+- ✅ حذف لیست‌ها با تاییدیه
+- ✅ ویرایش عنوان لیست‌ها
+- ✅ **جابجایی لیست‌ها با کشیدن و رها کردن (Drag & Drop)**
+- ✅ مرتب‌سازی افقی لیست‌ها
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### مدیریت کارت‌ها (Card Management)
+- ✅ ایجاد کارت‌های جدید در هر لیست
+- ✅ ویرایش عنوان کارت‌ها
+- ✅ **جابجایی کارت‌ها بین لیست‌ها با Drag & Drop**
+- ✅ مشاهده جزئیات کارت در مودال
+- ✅ نمایش تعداد کامنت‌ها
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### سیستم کامنت‌ها (Comments System)
+- ✅ افزودن کامنت به هر کارت
+- ✅ مشاهده تمام کامنت‌ها با تاریخ و زمان
+- ✅ رابط کاربری زیبا برای مدیریت کامنت‌ها
+- ✅ میانبرهای صفحه‌کلید (Ctrl+Enter برای ارسال)
 
-## Learn More
+### طراحی ریسپانسیو (Responsive Design)
+- ✅ طراحی Mobile-First
+- ✅ سازگار با موبایل، تبلت و دسکتاپ
+- ✅ تجربه کاربری عالی در تمام دستگاه‌ها
+- ✅ پشتیبانی از لمس (Touch) برای موبایل
 
-To learn more about Next.js, take a look at the following resources:
+### ویژگی‌های اضافی
+- ✅ نمایش دقیق UI در هنگام Drag & Drop
+- ✅ جلوه‌های بصری روان و حرفه‌ای
+- ✅ مدیریت خطا و اعتبارسنجی ورودی‌ها
+- ✅ ذخیره‌سازی خودکار تغییرات
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠️ تکنولوژی‌های استفاده شده
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Next.js 16** - فریمورک React با App Router
+- **TypeScript** - Type Safety کامل برای کیفیت کد بالاتر
+- **SCSS** - استایل‌دهی پیشرفته با Variables، Mixins و Nesting
+- **Zustand** - مدیریت State سبک و کارآمد
+- **@dnd-kit** - کتابخانه مدرن Drag & Drop
+- **localStorage** - ذخیره‌سازی داده‌ها در مرورگر
 
-## Deploy on Vercel
+## 🏗️ معماری پروژه
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+این پروژه از **اصول SOLID** و **الگوی DRY** پیروی می‌کند:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📁 ساختار پروژه
+src/
+├── app/ # Next.js App Router
+│ ├── layout.tsx # Layout اصلی
+│ ├── page.tsx # صفحه اصلی
+│ └── globals.scss # استایل‌های سراسری
+├── components/ # کامپوننت‌های React
+│ ├── Board/ # کامپوننت برد
+│ │ ├── Board.tsx
+│ │ └── Board.module.scss
+│ ├── List/ # کامپوننت‌های لیست
+│ │ ├── List.tsx
+│ │ ├── ListHeader.tsx
+│ │ ├── AddList.tsx
+│ │ ├── SortableList.tsx
+│ │ └── List.module.scss
+│ ├── Card/ # کامپوننت‌های کارت
+│ │ ├── Card.tsx
+│ │ ├── AddCard.tsx
+│ │ ├── CardModal.tsx
+│ │ └── Card.module.scss
+│ └── Common/ # کامپوننت‌های مشترک
+│ ├── EditableText.tsx
+│ └── EditableText.module.scss
+├── store/ # مدیریت State با Zustand
+│ └── useBoardStore.ts # Store برد
+├── hooks/ # Custom Hooks
+│ └── useLocalStorage.ts # Hook ذخیره‌سازی
+│ └── useDragAndDrop.ts # Hook درج و رها
+├── types/ # تعاریف TypeScript
+│ └── index.ts
+├── utils/ # توابع کمکی
+│ ├── storage.ts # مدیریت localStorage
+│ └── errorHandler.ts # مدیریت خطاها
+└── styles/ # فایل‌های SCSS
+├── _variables.scss # متغیرهای طراحی
+├── _mixins.scss # Mixins قابل استفاده مجدد
+└── _breakpoints.scss # نقاط شکست ریسپانسیو
+
