@@ -1,0 +1,290 @@
+@use '../../styles/variables';
+@use '../../styles/mixins';
+@use '../../styles/breakpoints';
+
+.card {
+  @include mixins.card-base;
+  padding: variables.$spacing-md;
+  margin-bottom: variables.$spacing-sm;
+  cursor: grab;
+  user-select: none;
+  
+  @include mixins.card-hover;
+  
+  &:active {
+    cursor: grabbing;
+  }
+  
+  &.dragging {
+    @include mixins.dragging-state;
+  }
+  
+  // Mobile optimization
+  @include breakpoints.max-md {
+    padding: variables.$spacing-sm;
+  }
+}
+
+.content {
+  @include mixins.flex-column;
+  gap: variables.$spacing-sm;
+}
+
+.title {
+  font-size: variables.$font-size-sm;
+  color: variables.$color-gray-900;
+  line-height: variables.$line-height-normal;
+  
+  &:hover {
+    background-color: variables.$color-gray-100;
+  }
+}
+
+.metadata {
+  @include mixins.flex-start;
+  gap: variables.$spacing-sm;
+  margin-top: variables.$spacing-xs;
+}
+
+.commentBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: variables.$spacing-xs;
+  font-size: variables.$font-size-xs;
+  color: variables.$color-gray-600;
+  padding: variables.$spacing-xs variables.$spacing-sm;
+  background-color: variables.$color-gray-100;
+  border-radius: variables.$radius-sm;
+}
+
+.detailsButton {
+  @include mixins.button-secondary;
+  width: 100%;
+  margin-top: variables.$spacing-sm;
+  font-size: variables.$font-size-xs;
+  padding: variables.$spacing-xs variables.$spacing-sm;
+  
+  &:hover {
+    background-color: variables.$color-primary;
+    color: variables.$color-white;
+  }
+}
+
+
+.addCardButton {
+  @include mixins.button-base;
+  width: 100%;
+  justify-content: flex-start;
+  padding: variables.$spacing-sm variables.$spacing-md;
+  background-color: transparent;
+  color: variables.$color-gray-600;
+  font-weight: variables.$font-weight-normal;
+  
+  &:hover {
+    background-color: variables.$color-gray-300;
+    color: variables.$color-gray-800;
+  }
+}
+
+.addCardForm {
+  @include mixins.flex-column;
+  gap: variables.$spacing-sm;
+}
+
+.addCardInput {
+  @include mixins.input-base;
+  resize: vertical;
+  min-height: 60px;
+}
+
+.addCardActions {
+  @include mixins.flex-start;
+  gap: variables.$spacing-sm;
+}
+
+.addCardSubmit {
+  @include mixins.button-primary;
+}
+
+.addCardCancel {
+  @include mixins.button-base;
+  background-color: transparent;
+  color: variables.$color-gray-600;
+  padding: variables.$spacing-sm;
+  
+  &:hover {
+    background-color: variables.$color-gray-200;
+  }
+}
+
+.modalOverlay {
+  @include mixins.overlay;
+  padding: variables.$spacing-lg;
+  
+  // Animation
+  animation: fadeIn variables.$transition-base;
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+.modal {
+  @include mixins.modal-base;
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  
+  // Animation
+  animation: slideUp variables.$transition-base;
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  // Responsive
+  @include breakpoints.max-md {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 0;
+  }
+}
+
+.modalHeader {
+  @include mixins.flex-between;
+  padding: variables.$spacing-xl;
+  border-bottom: 1px solid variables.$color-gray-300;
+  
+  @include breakpoints.max-md {
+    padding: variables.$spacing-lg;
+  }
+}
+
+.modalTitle {
+  @include mixins.flex-start;
+  gap: variables.$spacing-md;
+  flex: 1;
+}
+
+.cardIcon {
+  font-size: variables.$font-size-2xl;
+}
+
+.modalCardTitle {
+  flex: 1;
+  font-size: variables.$font-size-xl;
+  font-weight: variables.$font-weight-bold;
+  color: variables.$color-gray-900;
+}
+
+.closeButton {
+  @include mixins.button-base;
+  background-color: transparent;
+  color: variables.$color-gray-600;
+  font-size: variables.$font-size-xl;
+  padding: variables.$spacing-sm;
+  width: 32px;
+  height: 32px;
+  
+  &:hover {
+    background-color: variables.$color-gray-200;
+    color: variables.$color-gray-900;
+  }
+}
+
+.modalBody {
+  padding: variables.$spacing-xl;
+  overflow-y: auto;
+  @include mixins.custom-scrollbar;
+  
+  @include breakpoints.max-md {
+    padding: variables.$spacing-lg;
+  }
+}
+
+.section {
+  @include mixins.flex-column;
+  gap: variables.$spacing-lg;
+}
+
+.sectionTitle {
+  font-size: variables.$font-size-lg;
+  font-weight: variables.$font-weight-semibold;
+  color: variables.$color-gray-800;
+  margin: 0;
+}
+
+
+.addCommentForm {
+  @include mixins.flex-column;
+  gap: variables.$spacing-md;
+}
+
+.commentInput {
+  @include mixins.input-base;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.commentSubmitButton {
+  @include mixins.button-primary;
+  align-self: flex-start;
+}
+
+.commentsList {
+  @include mixins.flex-column;
+  gap: variables.$spacing-lg;
+}
+
+.noComments {
+  text-align: center;
+  color: variables.$color-gray-500;
+  padding: variables.$spacing-xl;
+  font-style: italic;
+}
+
+.comment {
+  @include mixins.flex-column;
+  gap: variables.$spacing-sm;
+  padding: variables.$spacing-md;
+  background-color: variables.$color-gray-50;
+  border-radius: variables.$radius-md;
+  border-left: 3px solid variables.$color-primary;
+}
+
+.commentHeader {
+  @include mixins.flex-between;
+  gap: variables.$spacing-md;
+}
+
+.commentAuthor {
+  font-weight: variables.$font-weight-semibold;
+  color: variables.$color-gray-900;
+  font-size: variables.$font-size-sm;
+}
+
+.commentDate {
+  font-size: variables.$font-size-xs;
+  color: variables.$color-gray-500;
+}
+
+.commentContent {
+  margin: 0;
+  color: variables.$color-gray-800;
+  line-height: variables.$line-height-relaxed;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
