@@ -1,0 +1,190 @@
+@use 'variables';
+// Flexbox Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Card/Container Mixins
+@mixin card-base {
+  background-color: variables.$bg-card;
+  border-radius: variables.$radius-sm;
+  box-shadow: variables.$shadow-sm;
+  transition: box-shadow variables.$transition-base;
+}
+
+@mixin card-hover {
+  &:hover {
+    box-shadow: variables.$shadow-md;
+  }
+}
+
+// Button Mixins
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: variables.$spacing-sm variables.$spacing-md;
+  border: none;
+  border-radius: variables.$radius-sm;
+  font-size: variables.$font-size-sm;
+  font-weight: variables.$font-weight-medium;
+  cursor: pointer;
+  transition: all variables.$transition-fast;
+  outline: none;
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background-color: variables.$color-primary;
+  color: variables.$color-white;
+  
+  &:hover:not(:disabled) {
+    background-color: variables.$color-primary-dark;
+  }
+  
+  &:active:not(:disabled) {
+    background-color: variables.$color-primary-dark;
+    transform: translateY(1px);
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  background-color: variables.$color-gray-200;
+  color: variables.$color-gray-800;
+  
+  &:hover:not(:disabled) {
+    background-color: variables.$color-gray-300;
+  }
+}
+
+@mixin button-danger {
+  @include button-base;
+  background-color: variables.$color-danger;
+  color: variables.$color-white;
+  
+  &:hover:not(:disabled) {
+    background-color: darken(variables.$color-danger, 10%);
+  }
+}
+
+// Input Mixins
+@mixin input-base {
+  width: 100%;
+  padding: variables.$spacing-sm variables.$spacing-md;
+  border: 2px solid variables.$color-gray-300;
+  border-radius: variables.$radius-sm;
+  font-size: variables.$font-size-sm;
+  font-family: variables.$font-family-base;
+  transition: border-color variables.$transition-fast;
+  
+  &:focus {
+    outline: none;
+    border-color: variables.$color-primary;
+  }
+  
+  &::placeholder {
+    color: variables.$color-gray-400;
+  }
+}
+
+// Scrollbar Mixins
+@mixin custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: variables.$color-gray-400;
+    border-radius: variables.$radius-lg;
+    
+    &:hover {
+      background-color: variables.$color-gray-500;
+    }
+  }
+}
+
+// Text Truncation
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin line-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: variables.$lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Modal/Overlay Mixins
+@mixin overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: variables.$bg-overlay;
+  z-index: variables.$z-index-overlay;
+  @include flex-center;
+}
+
+@mixin modal-base {
+  background-color: variables.$bg-card;
+  border-radius: variables.$radius-lg;
+  box-shadow: variables.$shadow-xl;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: hidden;
+}
+
+// Focus Visible
+@mixin focus-visible {
+  &:focus-visible {
+    outline: 2px solid variables.$color-primary;
+    outline-offset: 2px;
+  }
+}
+
+// Drag and Drop States
+@mixin dragging-state {
+  opacity: 0.5;
+  cursor: grabbing;
+  transform: rotate(3deg);
+}
+
+@mixin drop-indicator {
+  background-color: variables.$color-primary-light;
+  border: 2px dashed variables.$color-primary;
+  opacity: 0.5;
+}
