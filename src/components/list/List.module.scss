@@ -1,0 +1,203 @@
+@use '../../styles/variables';
+@use '../../styles/mixins';
+@use '../../styles/breakpoints';
+
+.sortableListWrapper {
+  display: flex;
+  flex-shrink: 0;
+  
+  // Ensure proper spacing and sizing for drop zones
+  min-width: variables.$list-width;
+  
+  @include breakpoints.max-md {
+    min-width: 85vw;
+  }
+}
+
+.list {
+  @include mixins.flex-column;
+  width: variables.$list-width;
+  min-width: variables.$list-width;
+  max-height: calc(100vh - 120px);
+  background-color: variables.$bg-list;
+  border-radius: variables.$radius-md;
+  padding: variables.$spacing-sm;
+
+  &.dragging {
+    opacity: 0.5;
+    cursor: grabbing;
+    transform: rotate(2deg);
+    box-shadow: variables.$shadow-xl;
+  }
+  
+  // Mobile optimization
+  @include breakpoints.max-md {
+    width: 85vw;
+    min-width: 85vw;
+    max-height: calc(100vh - 100px);
+  }
+}
+
+.listHeader {
+  @include mixins.flex-start;
+  padding: variables.$spacing-sm;
+  gap: variables.$spacing-sm;
+  position: relative;
+}
+
+.dragHandle {
+  @include mixins.button-base;
+  background-color: transparent;
+  color: variables.$color-gray-600;
+  padding: variables.$spacing-xs;
+  font-size: variables.$font-size-lg;
+  line-height: 1;
+  cursor: grab;
+  touch-action: none;
+  flex-shrink: 0;
+  
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: variables.$color-gray-700;
+  }
+  
+  &:active {
+    cursor: grabbing;
+  }
+  
+  // Mobile optimization
+  @include breakpoints.max-md {
+    font-size: variables.$font-size-xl;
+    padding: variables.$spacing-sm;
+  }
+}
+
+.listTitle {
+  flex: 1;
+  font-weight: variables.$font-weight-semibold;
+  color: variables.$color-gray-900;
+  
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
+
+.listActions {
+  position: relative;
+}
+
+.menuButton {
+  @include mixins.button-base;
+  background-color: transparent;
+  color: variables.$color-gray-600;
+  padding: variables.$spacing-xs variables.$spacing-sm;
+  font-size: variables.$font-size-lg;
+  
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+.menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: variables.$bg-card;
+  border-radius: variables.$radius-md;
+  box-shadow: variables.$shadow-lg;
+  z-index: variables.$z-index-dropdown;
+  min-width: 200px;
+  padding: variables.$spacing-sm;
+  margin-top: variables.$spacing-xs;
+}
+
+.menuItem {
+  @include mixins.button-base;
+  width: 100%;
+  justify-content: flex-start;
+  background-color: transparent;
+  color: variables.$color-gray-800;
+  padding: variables.$spacing-sm variables.$spacing-md;
+  
+  &:hover {
+    background-color: variables.$color-gray-100;
+  }
+}
+
+
+.cardsContainer {
+  @include mixins.flex-column;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: variables.$spacing-xs variables.$spacing-sm;
+  margin: variables.$spacing-xs 0;
+  @include mixins.custom-scrollbar;
+  
+  min-height: 50px;
+}
+
+.addCardContainer {
+  padding: variables.$spacing-xs variables.$spacing-sm;
+}
+
+.addListButton {
+  @include mixins.button-base;
+  width: variables.$list-width;
+  min-width: variables.$list-width;
+  height: fit-content;
+  justify-content: flex-start;
+  background-color: rgba(255, 255, 255, 0.24);
+  color: variables.$color-white;
+  font-weight: variables.$font-weight-medium;
+  padding: variables.$spacing-md;
+  
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.32);
+  }
+  
+  // Mobile optimization
+  @include breakpoints.max-md {
+    width: 85vw;
+    min-width: 85vw;
+  }
+}
+
+.addListForm {
+  @include mixins.flex-column;
+  width: variables.$list-width;
+  min-width: variables.$list-width;
+  background-color: variables.$bg-list;
+  border-radius: variables.$radius-md;
+  padding: variables.$spacing-sm;
+  gap: variables.$spacing-sm;
+  
+  @include breakpoints.max-md {
+    width: 85vw;
+    min-width: 85vw;
+  }
+}
+
+.addListInput {
+  @include mixins.input-base;
+}
+
+.addListActions {
+  @include mixins.flex-start;
+  gap: variables.$spacing-sm;
+}
+
+.addListSubmit {
+  @include mixins.button-primary;
+}
+
+.addListCancel {
+  @include mixins.button-base;
+  background-color: transparent;
+  color: variables.$color-gray-600;
+  padding: variables.$spacing-sm;
+  
+  &:hover {
+    background-color: variables.$color-gray-200;
+  }
+}
