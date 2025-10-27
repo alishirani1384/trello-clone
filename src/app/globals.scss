@@ -1,0 +1,62 @@
+@use '../styles/variables';
+@use '../styles/mixins';
+@use '../styles/breakpoints';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: variables.$font-family-base;
+  font-size: variables.$font-size-base;
+  line-height: variables.$line-height-normal;
+  color: variables.$color-gray-900;
+  background-color: variables.$bg-board;
+  overflow-x: hidden;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+input,
+textarea {
+  font-family: inherit;
+}
+
+.skip-to-main {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: variables.$color-primary;
+  color: variables.$color-white;
+  padding: variables.$spacing-sm variables.$spacing-md;
+  text-decoration: none;
+  z-index: 100;
+  
+  &:focus {
+    top: 0;
+  }
+}
+
+:focus-visible {
+  @include mixins.focus-visible;
+}
+
+::selection {
+  background-color: variables.$color-primary-light;
+  color: variables.$color-white;
+}
