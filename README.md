@@ -54,42 +54,4 @@
 
 این پروژه از **اصول SOLID** و **الگوی DRY** پیروی می‌کند:
 
-## 📁 ساختار پروژه
-src/
-├── app/ # Next.js App Router
-│ ├── layout.tsx # Layout اصلی
-│ ├── page.tsx # صفحه اصلی
-│ └── globals.scss # استایل‌های سراسری
-├── components/ # کامپوننت‌های React
-│ ├── Board/ # کامپوننت برد
-│ │ ├── Board.tsx
-│ │ └── Board.module.scss
-│ ├── List/ # کامپوننت‌های لیست
-│ │ ├── List.tsx
-│ │ ├── ListHeader.tsx
-│ │ ├── AddList.tsx
-│ │ ├── SortableList.tsx
-│ │ └── List.module.scss
-│ ├── Card/ # کامپوننت‌های کارت
-│ │ ├── Card.tsx
-│ │ ├── AddCard.tsx
-│ │ ├── CardModal.tsx
-│ │ └── Card.module.scss
-│ └── Common/ # کامپوننت‌های مشترک
-│ ├── EditableText.tsx
-│ └── EditableText.module.scss
-├── store/ # مدیریت State با Zustand
-│ └── useBoardStore.ts # Store برد
-├── hooks/ # Custom Hooks
-│ └── useLocalStorage.ts # Hook ذخیره‌سازی
-│ └── useDragAndDrop.ts # Hook درج و رها
-├── types/ # تعاریف TypeScript
-│ └── index.ts
-├── utils/ # توابع کمکی
-│ ├── storage.ts # مدیریت localStorage
-│ └── errorHandler.ts # مدیریت خطاها
-└── styles/ # فایل‌های SCSS
-├── _variables.scss # متغیرهای طراحی
-├── _mixins.scss # Mixins قابل استفاده مجدد
-└── _breakpoints.scss # نقاط شکست ریسپانسیو
 
